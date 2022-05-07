@@ -1,4 +1,5 @@
 from flask import Flask
+import os 
 from .main import main_blueprint
 from config import config_options
 from flask_sqlalchemy import SQLAlchemy
@@ -12,7 +13,8 @@ def create_app(config_name):
 
     app.config.from_object(config_options[config_name])
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    
+
+
     app.register_blueprint(main_blueprint)
 
     db.init_app(app)

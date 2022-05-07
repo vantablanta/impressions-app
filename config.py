@@ -1,4 +1,3 @@
-from distutils.command.config import config
 import os 
 
 from dotenv import load_dotenv, find_dotenv
