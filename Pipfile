@@ -7,6 +7,10 @@ name = "pypi"
 flask = "*"
 python-dotenv = "*"
 flask-wtf = {extras = ["email"], version = "*"}
+flask-sqlalchemy = "*"
+psycopg2-binary = "*"
+psycopg = "*"
+flask-migrate = "*"
 
 [dev-packages]
 
