@@ -1,0 +1,15 @@
+body{
+    background: #7A93AC;
+    color: #171A21;
+}
+.navbar-brand{
+    color: #171A21 !important;
+}
+
+.nav-link{
+    color: #171A21 !important;
+}
+
+.navbar-toggler-icon{
+    color: #171A21 !important;
+}

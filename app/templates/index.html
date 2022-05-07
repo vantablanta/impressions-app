@@ -1,8 +1,12 @@
 {%extends 'base.html'%}
+{%include 'nav.html' %}
 
 
 
 {%block body%}
-<h1>Hello</h1>
+{%block styles%}
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+{%endblock%}
+
 
 {%endblock%}
