@@ -2,14 +2,20 @@ body{
     background: #7A93AC;
     color: #171A21;
 }
+
+/* NAV CSS */
 .navbar-brand{
     color: #171A21 !important;
 }
-
 .nav-link{
     color: #171A21 !important;
 }
-
-.navbar-toggler-icon{
+.nav-link:hover{
     color: #171A21 !important;
+}
+.nav-link:hover{
+    color: #fff !important;
+}
+.navbar-toggler-icon{
+    color: #fff !important;
 }
