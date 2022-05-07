@@ -26,8 +26,19 @@ body{
 }
 
 /* WELCOME SECTION */
-.btn{
-    background-color: #617073;
-    border-color: #617073;
+.view-btn{
+    border-color: #F08700;
     color: #171A21;
+}
+.view-btn:hover{
+    color: #fff;
+    background-color: #F08700;
+}
+.register-btn{
+    background-color: #F08700;
+    border-color: #F08700;
+    color: #171A21;
+}
+.register-btn:hover{
+    color: #fff;
 }
