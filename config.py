@@ -8,7 +8,7 @@ load_dotenv(find_dotenv())
 
 class Config():
     """"""
-    # SQLALCHEMY_DB_URI = os.getenv('LOCAL_DATABASE_URI')
+    SECRET_KEY = os.getenv('SECRET_KEY')
 
 class DevConfig(Config):
     # SQLALCHEMY_DB_URI = os.getenv('LOCAL_DATABASE_URI')
