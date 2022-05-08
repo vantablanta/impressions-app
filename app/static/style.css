@@ -44,3 +44,16 @@ body{
 .register-btn:hover{
     color: #fff;
 }
+
+.fa-comments{
+    color: #F08700;
+}
+.fa-thumbs-up{
+color: green;
+}
+.fa-thumbs-down{
+color:  red;
+}
+.votes{
+    color: #171A21;
+}

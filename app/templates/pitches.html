@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{%include 'nav.html' %}
+
+{%block body%}
+
+<div class="container card-group">
+    {%for pitch in pitches %}
+    <div class="card border-info m-1" style="max-width: 18rem;">
+        <div class="card-header w-100">{{pitch['poster']}}</div>
+        <div class="card-body">
+          <h5 class="card-title">{{pitch['category']}}</h5>
+          <p class="card-text">{{pitch['body']}}</p>
+        </div>
+        <div class="row p-3">
+            <i class="fa fa-comments col-md-4 col-sm-4" aria-hidden="true"></i>
+            <i class="fa fa-thumbs-up col-md-4 col-sm-4" aria-hidden="true">
+                <span class="votes">{{pitch['upvotes']}}</span>
+            </i>
+            <i class="fa fa-thumbs-down col-md-4 col-sm-4" aria-hidden="true">
+                <span class="votes">{{pitch['downvotes']}}</span>
+            </i>
+        </div>
+        
+      </div>
+    {{pitch['content']}}
+    {%endfor%}
+</div>
+
+{%endblock%}
