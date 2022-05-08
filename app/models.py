@@ -1,7 +1,7 @@
-from . import db, login_manager
+from . import db
+from . import  login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -36,6 +36,22 @@ class Comments:
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Text, db.ForeignKey('person.id'))
 
-    def __init__(self, poster, body):
-        self.poster = poster
+    all_comments = []
+
+    def __init__(self, user_id, username, body):
+        self.user_id = user_id
+        self.username = username
         self.body = body
+
+    def save_comment(self):
+       Comments.all_comments.append(self)
+
+    @classmethod 
+    def get_comments(cls):
+        data = []
+
+        for comment in cls.all_comments:
+           data.append(comment)
+
+        return data
+

@@ -1,60 +1,30 @@
 from . import main_blueprint
 from flask import render_template
-from .forms import RegisterForm, LoginForm
 from flask_login import login_required
-
 
 @main_blueprint.route('/')
 def home():
-    form = RegisterForm()
-    return render_template('index.html', form=form)
-
+    return render_template('index.html')
 
 @main_blueprint.route('/pitches')
 def pitches():
     pitches = [
         {
+            "id" : 1,
             'poster': "Michelle",
             "category": "Random",
             "body": "Like it and leav it",
-            "upvotes": 8,
-            "downvotes": 0
-        },
-        {
-            'poster': "Avana",
-            "category": "Cars",
-            "body": "Like it and leav it",
-            "upvotes": 8,
-            "downvotes": 0
-        },
-        {
-            'poster': "Butile",
-            "category": "Crabs",
-            "body": "Like it and leav it",
-            "upvotes": 8,
-            "downvotes": 0
-        },
-        {
-            'poster': "Bankok",
-            "category": "Cake",
-            "body": "Like it and leav it",
-            "upvotes": 8,
-            "downvotes": 0
-        },
-        {
-            'poster': "Bamudo",
-            "category": "Health",
-            "body": "Like it and leav it",
+            "comments": ["comment1","comment2","comment3",],
             "upvotes": 8,
             "downvotes": 0
         },
     ]
     return render_template('pitches.html', pitches = pitches)
+# fix
 
-@main_blueprint.route('/movie/comment/new/<int:id>', methods = ['GET','POST'])
+
+@main_blueprint.route('/pitches/review/<int:id>', methods = ['GET','POST'])
 @login_required
 def new_review(id):
-    ""
-
-
+    """"""
 
