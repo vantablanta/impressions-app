@@ -1,23 +1,32 @@
-<div class="form-group form-control">
-    <p class="fs-3 text-center">Register</p>
-    <p class="text-center">Create an account to share your impression</p>
-    <div>
-        {{form.name.label(class='form-label')}}
-        {{form.name(class=' form-control')}}
+{%extends 'base.html'%}
+{%block body%}
+<div class="container d-flex justify-content-center">
+    <div class="form-group form-control p-5 m-5 w-50">
+        <p class="fs-3 text-center">Register</p>
+        <p class="text-center">Create an account to share your impression</p>
+        <div>
+            {{form.name.label(class='form-label')}}
+            {{form.name(class=' form-control')}}
+        </div>
+        <div class="">
+            {{form.email.label(class='form-label')}}
+            {{form.email(class='form-control')}}
+        </div>
+        <div class="">
+            {{form.password.label(class='form-label')}}
+            {{form.password(class='form-control')}}
+        </div>
+        <div class="">
+            {{form.confirm_password.label(class='form-label')}}
+            {{form.confirm_password(class='form-control')}}
+        </div>
+        <div class="">
+            {{form.submit(class='btn register-btn mt-3 mb-3')}}
+        </div>
     </div>
-    <div class="">
-        {{form.email.label(class='form-label')}}
-        {{form.email(class='form-control')}}
-    </div>
-    <div class="">
-        {{form.password.label(class='form-label')}}
-        {{form.password(class='form-control')}}
-    </div>
-    <div class="">
-        {{form.confirm_password.label(class='form-label')}}
-        {{form.confirm_password(class='form-control')}}
-    </div>
-    <div class="">
-        {{form.submit(class='btn register-btn mt-3 mb-3')}}
-    </div>
+
+
 </div>
+
+
+{%endblock%}
