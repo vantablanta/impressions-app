@@ -1,7 +1,7 @@
 from . import main_blueprint
 from flask import render_template
-from .forms import RegisterForm
-# from flask_login import login_required
+from .forms import RegisterForm, LoginForm
+from flask_login import login_required
 
 
 @main_blueprint.route('/')
@@ -50,3 +50,11 @@ def pitches():
         },
     ]
     return render_template('pitches.html', pitches = pitches)
+
+@main_blueprint.route('/movie/comment/new/<int:id>', methods = ['GET','POST'])
+@login_required
+def new_review(id):
+    ""
+
+
+
