@@ -10,6 +10,9 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String)
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
+
+    def __repr__(self):
+        return f'User {self.name}'
     # hash the password
     @property
     def password(self):
