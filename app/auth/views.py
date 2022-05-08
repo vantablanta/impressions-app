@@ -14,22 +14,22 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.verify_password(form.password.data):
                 login_user(user,form.remember.data)
-                return redirect(request.args.get('next') or url_for('index.html'))
+                return redirect(request.args.get('next') or url_for('main.index'))
         flash('Invalid username or Password')
-
-
     return render_template('auth/login.html', form=form)
+
 
 @auth_blueprint.route('/register', methods = ["GET","POST"])
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        user = User(name = form.name.data, email= form.email.data, password=form.password.data)
+        user = User(name = form.name.data, email=form.email.data, password=form.password.data)       
         db.session.add(user)
         db.session.commit()
-        title = "New Account"
+        print(form.errors)
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', form=form)
+
 
 @auth_blueprint.route('/logout')
 @login_required

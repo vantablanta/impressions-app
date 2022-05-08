@@ -34,8 +34,6 @@ class User(UserMixin, db.Model):
 
 class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    
-
 
     all_comments = []
 

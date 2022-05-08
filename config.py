@@ -8,6 +8,7 @@ load_dotenv(find_dotenv())
 class Config():
     """"""
     SECRET_KEY = os.getenv('SECRET_KEY')
+    UPLOADED_PHOTOS_DEST ='app/static/photos'
 
 class DevConfig(Config):
     # SQLALCHEMY_DB_URI = os.getenv('LOCAL_DATABASE_URI')
