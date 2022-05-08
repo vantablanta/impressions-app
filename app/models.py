@@ -8,8 +8,8 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String, unique=True)
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String)
-    comments = db.relationship('Comments', backref='user', lazy=True)
-
+    bio = db.Column(db.String(255))
+    profile_pic_path = db.Column(db.String())
     # hash the password
     @property
     def password(self):
@@ -32,9 +32,10 @@ class User(UserMixin, db.Model):
         return User.query.get(int(user_id))
 
 
-class Comments:
+class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Text, db.ForeignKey('person.id'))
+    
+
 
     all_comments = []
 
