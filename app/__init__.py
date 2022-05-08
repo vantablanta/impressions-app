@@ -1,6 +1,6 @@
 from flask import Flask
-import os 
 from .main import main_blueprint
+from .auth import auth_blueprint
 from config import config_options
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -15,8 +15,13 @@ def create_app(config_name):
     app.config.from_object(config_options[config_name])
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-
+    # main blueprint
     app.register_blueprint(main_blueprint)
+    
+    # auth blueprint
+    app.register_blueprint(auth_blueprint, url_prefix = '/authenticate')
+  
+
 
     db.init_app(app)
     migrate = Migrate(app, db)
