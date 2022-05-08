@@ -1,8 +1,6 @@
 {%extends 'base.html'%}
 {%include 'nav.html' %}
 
-
-
 {%block body%}
 <div class="container">
     <div class="row">
@@ -10,11 +8,11 @@
             <p class="fs-1"><strong> First Impressions</strong></p>
             <hr class="w-50">
             <p class="fs-3">If all it took was one minute.<br>What would you say to impress?</p>
-            <p class="fs-5"><strong>Register to get started</strong></p>
+            <p class="fs-5"><strong>
+                <a class="register-link"href="/auth/register">Register to get started</a></strong></p>
             <button class="btn view-btn mt-4">View Pitches</button>
         </div>  
     </div>
 </div>
-
 
 {%endblock%}

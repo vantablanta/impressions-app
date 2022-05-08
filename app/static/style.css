@@ -44,6 +44,10 @@ body{
 .register-btn:hover{
     color: #fff;
 }
+.register-link{
+    text-decoration: none;
+    color: #171A21;
+}
 
 .fa-comments{
     color: #F08700;
