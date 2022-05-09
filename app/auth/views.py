@@ -1,3 +1,4 @@
+from re import template
 from flask import render_template, redirect, url_for, flash, request
 from . import auth_blueprint
 from .forms import LoginForm, RegisterForm
@@ -40,3 +41,8 @@ def register():
 def logout():
     logout_user()
     return redirect(url_for("main_blueprint.home"))
+
+
+@auth_blueprint.route("/profile")
+def profile():
+    return render_template('profile.html')
