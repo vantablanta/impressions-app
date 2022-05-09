@@ -14,7 +14,7 @@ flask-migrate = "*"
 flask-login = "*"
 flask-uploads = "*"
 flask-mail = "*"
-
+gunicorn = "*"
 
 [dev-packages]
 autopep8 = "*"

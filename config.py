@@ -18,11 +18,11 @@ class Config():
 
 class DevConfig(Config):
     # SQLALCHEMY_DB_URI = os.getenv('LOCAL_DATABASE_URI')
-    DEBUG = os.getenv('DEBUG')
-    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = os.getenv('DEV_SQLALCHEMY_DATABASE_URI')
 
 class ProdConfig(Config):
-    """"""
+    SQLALCHEMY_DATABASE_URI = os.getenv('PROD_SQLALCHEMY_DATABASE_URI')
 
 
 
