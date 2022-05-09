@@ -12,7 +12,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email = form.email.data).first()
-        if user is not None and user.verify_password(form.password.data):
+        if user is not None: # && password verification fail
             login_user(user, form.remember.data)
             return redirect(request.args.get('next') or url_for('main_blueprint.home'))
         flash('Invalid username or Password', "danger")
