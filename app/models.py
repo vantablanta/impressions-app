@@ -12,7 +12,13 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(20), unique=True, nullable = False)
     email = db.Column(db.String(120), unique=True, nullable = False)
     password = db.Column(db.String(60),  nullable = False)
-
+    bio = db.Column(db.String(60),  nullable = False)
+    profile_picture = db.Column(db.String(300),  nullable = False, default='https://cdn.pixabay.com/photo/2016/08/31/11/54/icon-1633249_960_720.png')
+    comment = db.relationship('Post',backref='poster', lazy=True)
+    
+    def __repr__(self):
+        return f"User('{self.name}', '{self.email}', '{self.password}', '{self.bio}', '{self.profile_picture}')"
+    
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -31,7 +37,10 @@ class Comments(db.Model):
     comments = db.Column(db.String(300),nullable = False)
     upvotes = db.Column(db.Integer,nullable = False)
     downvotes = db.Column(db.Integer, nullable = False)
-   
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+
+    def __repr__(self):
+        return f"User('{self.category}', '{self.body}', '{self.comments}', '{self.upvotes}', '{self.downvotes}')"
 
     all_comments = []
 
