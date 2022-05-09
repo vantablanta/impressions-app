@@ -11,9 +11,8 @@ from ..email import mail_message
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        email = form.email.data
-        user = User.query.filter_by(email = email).first()
-        if user is not None:
+        user = User.query.filter_by(email = form.email.data).first()
+        if user is not None and user.verify_password(form.password.data):
             login_user(user, form.remember.data)
             return redirect(request.args.get('next') or url_for('main_blueprint.home'))
         flash('Invalid username or Password', "danger")
@@ -25,11 +24,10 @@ def register():
     form = RegisterForm()
     if form.validate_on_submit():
         user = User(name=form.name.data, email=form.email.data, password=form.password.data)
-        print(user)
         flash("You have successfully created an acount", "success")
         db.session.add(user)
         db.session.commit()
-        mail_message("Welcome to Impressions","email/welcome",user.email,user=user)
+        # mail_message("Welcome to Impressions","email/welcome",user.email,user=user)
         return redirect(url_for('auth_blueprint.login'))
     return render_template('auth/register.html', form=form)
 

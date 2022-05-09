@@ -11,14 +11,12 @@ class RegisterForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password',validators=[InputRequired()])  
     submit = SubmitField('Submit')
 
-    def validate_email(self,email):
-        user = User.query.filter_by(email=email.data).first()
-        if user:
+    def validate_email(self,data_field):
+       if User.query.filter_by(email = data_field.data).first():
             raise ValidationError('There is an account with that email')
 
-    def validate_username(self,name):
-        user = User.query.filter_by(name=name.data).first()
-        if user:
+    def validate_username(self,data_field):
+        if User.query.filter_by(name = data_field.data).first():
             raise ValidationError('That username is taken')
 
 
