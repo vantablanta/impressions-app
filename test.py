@@ -1,5 +1,5 @@
 import unittest
-from app.models import User
+from app.models import User, Pitch, Comments
 
 class UserModelTest(unittest.TestCase):
     def setUp(self):
@@ -14,6 +14,13 @@ class UserModelTest(unittest.TestCase):
 
     def test_password_verification(self):
         self.assertTrue(self.new_user.verify_password('michelle/2020'))
+
+class UserModelTest(unittest.TestCase):
+    def setUp(self):
+        self.new_pitch = Pitch(password='michelle/2020')
+
+    def test_password_verification(self):
+        self.assertEqual(self.new_pitch('michelle/2020'))
 
 
         

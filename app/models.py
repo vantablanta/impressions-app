@@ -15,7 +15,7 @@ class User(UserMixin, db.Model):
     secure_password = db.Column(db.String(60),  nullable = False)
     bio = db.Column(db.String(60),  default ="enter bio", nullable = False)
     profile_picture = db.Column(db.String(300),  nullable = False, default='https://cdn.pixabay.com/photo/2016/08/31/11/54/icon-1633249_960_720.png')
-    comment = db.relationship("Comments",backref='poster', lazy=True)
+    pitches = db.relationship('Pitch', backref='user', lazy='dynamic')
     
     def __init__(self,name, email, password) :
         self.name = name
@@ -42,10 +42,8 @@ class Comments(db.Model):
     category = db.Column(db.String(120),nullable = False)
     body = db.Column(db.String(120),nullable = False )
     comments = db.Column(db.String(300),nullable = False)
-    upvotes = db.Column(db.Integer,nullable = False)
-    downvotes = db.Column(db.Integer, nullable = False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
-
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+    
     def __repr__(self):
         return f"User('{self.category}', '{self.body}', '{self.comments}', '{self.upvotes}', '{self.downvotes}')"
 
@@ -67,5 +65,17 @@ class Comments(db.Model):
         return data
 
 
+class Pitch(db.Model):
+    __tablename__ = 'pitches'
+    id = db.Column(db.Integer, primary_key = True)
+    title = db.Column(db.String(255),nullable = False)
+    category = db.Column(db.String(255), index = True,nullable = False)
+    body = db.Column(db.Text(), nullable = False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))    
 
-
+    
+    def __init__(self, title, category, body, user_id):
+       self.title =  title
+       self.category  = category
+       self.body = body 
+       self. user_id = user_id

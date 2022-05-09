@@ -19,6 +19,12 @@
             <i class="fa fa-thumbs-down col-md-4 col-sm-4" aria-hidden="true">
                 <span class="votes">{{pitch['downvotes']}}</span>
             </i>
+            {%if current_user.is_authenticated%}
+            <a href="{{(url_for('main_blueprint.add_pitch'))}}">Post Pitch</a>
+            {%else%}
+            <a href="{{(url_for('auth_blueprint.register'))}}">Post Pitch</a>
+            
+            {%endif%}
         </div>
         
       </div>
