@@ -17,8 +17,13 @@ class User(UserMixin, db.Model):
     profile_picture = db.Column(db.String(300),  nullable = False, default='https://cdn.pixabay.com/photo/2016/08/31/11/54/icon-1633249_960_720.png')
     comment = db.relationship("Comments",backref='poster', lazy=True)
     
+    def __init__(self,name, email, password) :
+        self.name = name
+        self.email = email
+        self.password = password
+
     def __repr__(self):
-        return f"User('{self.name}', '{self.email}', '{self.secure_password}', '{self.profile_picture}')"
+        return f"User('{self.name}')"
     
     @property
     def set_password(self):

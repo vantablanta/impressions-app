@@ -12,9 +12,9 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email = form.email.data).first()
-        if user is not None: # && password verification fail
+        if user is not None:
             login_user(user, form.remember.data)
-            return redirect(request.args.get('next') or url_for('main_blueprint.home'))
+            return redirect(request.args.get('next') or url_for('main_blueprint.pitches'))
         flash('Invalid username or Password', "danger")
     return render_template('auth/login.html', form=form)
 
@@ -22,9 +22,11 @@ def login():
 @auth_blueprint.route('/register', methods=["GET","POST"])
 def register():
     form = RegisterForm()
-    if form.validate_on_submit():
-        user = User(name=form.name.data, email=form.email.data, password=form.password.data)
-        flash("You have successfully created an acount", "success")
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+        user = User(name, email, password)
         db.session.add(user)
         db.session.commit()
         # mail_message("Welcome to Impressions","email/welcome",user.email,user=user)
