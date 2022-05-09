@@ -1,8 +1,8 @@
-"""adds columnsand tables
+"""craeted user and comments table
 
-Revision ID: a139a5e43994
+Revision ID: b70d14f1ff98
 Revises: 
-Create Date: 2022-05-09 21:45:04.420663
+Create Date: 2022-05-09 21:59:00.757338
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a139a5e43994'
+revision = 'b70d14f1ff98'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,7 +22,6 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=20), nullable=False),
     sa.Column('email', sa.String(length=120), nullable=False),
-    sa.Column('password', sa.String(length=100), nullable=False),
     sa.Column('bio', sa.String(length=60), nullable=False),
     sa.Column('profile_picture', sa.String(length=300), nullable=False),
     sa.PrimaryKeyConstraint('id'),
