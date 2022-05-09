@@ -45,7 +45,12 @@ def pitches():
 #         return redirect(url_for('.comment', pitch_id = pitch_id))
 #     return render_template('comment.html', form =form, pitch = pitch,all_comments=all_comments)
 
-
+@main_blueprint.route('/comment', methods=['GET', 'POST'])
+def comment():
+    form = CommentForm()
+    if form.validate_on_submit():
+        return redirect(url_for('main_blueprint.pitches'))
+    return render_template("new_comment.html", form = form )
 
 
 
@@ -53,10 +58,8 @@ def pitches():
 @main_blueprint.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(name=uname).first()
-
     if user is None:
         abort(404)
-
     return render_template("profile/profile.html", user=user)
 
 
@@ -80,15 +83,17 @@ def update_profile(uname):
 def add_pitch():
     form = PitchForm()
     if form.validate_on_submit():
-        title = form.title.data
-        category = form.category.data
-        body = form.body.data
-        user_id = current_user
-        pitch = Pitch(title=title, category=category, body=body, user_id=current_user._get_current_object())
-        db.session.add(pitch)
-        db.session.commit()
-        return redirect(url_for('main_blueprint.index'))
+        # title = form.title.data
+        # category = form.category.data
+        # body = form.body.data
+        # user_id = current_user
+        # pitch = Pitch(title=title, category=category, body=body, user_id=current_user._get_current_object())
+        # db.session.add(pitch)
+        # db.session.commit()
+        return redirect(url_for('main_blueprint.home'))
     return render_template('new_pitch.html', form = form)
+
+
 
 
     
