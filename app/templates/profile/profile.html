@@ -7,31 +7,22 @@
     <!-- displaying  Username-->
     <div class="col-md-4">
       <h3> {{user.name| capitalize}} </h3>
-
       <!--Displaying user bio-->
       {% if user.bio %}
       <p> {{user.bio}}</p>
       {%else%}
       <p> {{user.name| capitalize}} has no bio </p>
       {% endif %}
-    </div>
-
-    <!--Display profile photo-->
-
-    <div class="col-md-4">
-
-      {% if user.profile_pic_path %}
-      <img src="{{url_for('static',filename=user.profile_profile_picture)}}" alt="" class="img-thumbnail">
-      {%else%}
+      {% if user.profile_picture %}
+      <img src="{{url_for('static',filename=user.profile_profile_picture)}}" alt="">
       {% endif %}
     </div>
   </div>
   {% if user == current_user %}
-  <button class="btn btn-secondary text-dark">
+  <button class="btn btn-secondary text-dark mt-4">
     <a style="text-decoration:none; color:#171A21;"
       href="{{url_for('main_blueprint.update_profile',uname=user.name)}}">Edit profile</a>
   </button>
-
   {% endif %}
 </div>
 {% endblock %}

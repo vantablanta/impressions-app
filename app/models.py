@@ -13,7 +13,7 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(20), unique=True, nullable = False)
     email = db.Column(db.String(120), unique=True, nullable = False)
     secure_password = db.Column(db.String(60),  nullable = False)
-    bio = db.Column(db.String(60),  default ="My Bio", nullable = False)
+    bio = db.Column(db.String(60),  default ="I love first impressions", nullable = False)
     profile_picture = db.Column(db.String(300),  nullable = False, default='https://cdn.pixabay.com/photo/2016/08/31/11/54/icon-1633249_960_720.png')
     pitches = db.relationship('Pitch', backref='user', lazy='dynamic')
     

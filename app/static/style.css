@@ -61,3 +61,12 @@ color:  red;
 .votes{
     color: #171A21;
 }
+
+.pitch, .comment{
+    text-decoration: none;
+    color: #171A21;
+}
+
+.pitch:hover, .comment:hover{
+    color: #F08700;
+}
