@@ -29,8 +29,6 @@ def pitches():
     return render_template('pitches.html', pitches=pitches)
 
 # fix
-
-
 @main_blueprint.route('/pitches/review/<int:id>', methods=['GET', 'POST'])
 @login_required
 def new_review(id):
@@ -39,7 +37,7 @@ def new_review(id):
 
 @main_blueprint.route('/user/<uname>')
 def profile(uname):
-    user = User.query.filter_by(username=uname).first()
+    user = User.query.filter_by(name=uname).first()
 
     if user is None:
         abort(404)
@@ -50,7 +48,7 @@ def profile(uname):
 @main_blueprint.route('/user/<uname>/update', methods=['GET', 'POST'])
 @login_required
 def update_profile(uname):
-    user = User.query.filter_by(username=uname).first()
+    user = User.query.filter_by(name=uname).first()
     if user is None:
         abort(404)
     form = UpdateProfile()
@@ -58,5 +56,5 @@ def update_profile(uname):
         user.bio = form.bio.data
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('.profile', uname=user.username))
+        return redirect(url_for('.profile', uname=user.name))
     return render_template('profile/update.html', form=form)

@@ -15,6 +15,7 @@ flask-login = "*"
 flask-uploads = "*"
 flask-mail = "*"
 
+
 [dev-packages]
 autopep8 = "*"
 
