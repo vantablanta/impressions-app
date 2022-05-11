@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import TextAreaField, SubmitField, StringField
+from wtforms import TextAreaField, SubmitField, StringField, SelectField
 from wtforms.validators import DataRequired
 
 class CommentForm(FlaskForm):
@@ -14,6 +14,6 @@ class UpdateProfile(FlaskForm):
 
 class PitchForm(FlaskForm):
     title = StringField('Pitch Title', validators = [DataRequired()])
-    category = StringField('Pitch Category', validators = [DataRequired()])   
+    category = SelectField('Pitch Category', validators = [DataRequired()], choices=["Any", "Health", "Personal"])   
     body = TextAreaField('Pitch', validators = [DataRequired()])
     submit = SubmitField('Submit')
