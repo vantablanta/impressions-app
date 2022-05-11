@@ -45,7 +45,6 @@
                 <div class="row pt-3 mt-5">
                     {%if current_user.is_authenticated%}
                     <a class="comment col-md-6" href="{{(url_for('main_blueprint.new_comment'))}}">Leave a comment</a>
-                    <a class="pitch col-md-6" href="{{(url_for('main_blueprint.add_pitch'))}}">Post Pitch</a>
                     {%else%}
                     <a class='pitch' href="{{(url_for('auth_blueprint.register'))}}">Post Pitch</a>
                     {%endif%}
