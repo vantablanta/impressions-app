@@ -46,17 +46,17 @@ class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(120), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    pitch_id = pitches = db.relationship('Pitch', backref='pitch', lazy='dynamic')
-
+    comments =db.relationship("Pitch", backref="comments", lazy="dynamic")
+    
     def __repr__(self):
         return f"User('{self.category}', '{self.body}', '{self.comments}', '{self.upvotes}', '{self.downvotes}')"
     
     all_comments = []
 
-    def __init__(self, user_id, body, pitch_id):
+    def __init__(self, user_id, body):
         self.user_id = user_id
         self.body = body
-        pitch_id =  pitch_id
+
 
     def save_comment(self):
         Comments.all_comments.append(self)
@@ -76,7 +76,7 @@ class Pitch(db.Model):
     category = db.Column(db.String(255), index=True, nullable=False)
     body = db.Column(db.Text(), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    comment_id = db.Column(db.Integer, db.ForeignKey('comments.id'))
+    comment_id = db.Column(db.Integer, db.ForeignKey('comments.id'), nullable=True)
 
     def __init__(self, title, category, body, user_id):
         self.title = title

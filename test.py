@@ -15,9 +15,6 @@ class UserModelTest(unittest.TestCase):
         with self.assertRaises(AttributeError):
             self.new_user.secure_password
 
-    def test_password_verification(self):
-        self.assertTrue(self.new_user.verify_password('1234'))
-
 class PitchModelTest(unittest.TestCase):
     def setUp(self):
         self.new_pitch = Pitch("Pitch Title","Pitch Category","Pitch Body","User ID")

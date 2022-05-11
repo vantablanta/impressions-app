@@ -54,10 +54,8 @@ def add_pitch():
         pitch = Pitch(title=title, category=category, body=body, user_id=user_id)
         db.session.add(pitch)
         db.session.commit()
-        return redirect(url_for('main_blueprint.home'))
+        return redirect(url_for('main_blueprint.pitches'))
     return render_template('new_pitch.html', form = form)
-
-
 
 @main_blueprint.route('/comment/<int:pitch_id>', methods = ['POST','GET'])
 @login_required
@@ -71,8 +69,8 @@ def new_comment():
     if form.validate_on_submit():
             body = form.body.data
             user_id = current_user._get_current_object().id
-            pitch_id = current_user._get_current_object().id
-            comment = Comments(body=body, user_id=user_id, pitch_id=pitch_id)
+            # pitch_id = current_user._get_current_object().id
+            comment = Comments(user_id=user_id, body=body)
             db.session.add(comment)
             db.session.commit()
             return redirect(url_for('main_blueprint.pitches'))
