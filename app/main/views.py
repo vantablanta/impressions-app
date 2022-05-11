@@ -40,7 +40,8 @@ def update_profile(uname):
 @main_blueprint.route('/pitches')
 def pitches():  
     pitches = Pitch.query.all()
-    return render_template('pitches.html', pitches=pitches)
+    comments = Comments.query.all()
+    return render_template('pitches.html', pitches=pitches, comments=comments)
 
 @main_blueprint.route('/pitch/add_new', methods=['GET', 'POST'])
 @login_required
@@ -73,7 +74,7 @@ def new_comment():
             comment = Comments(user_id=user_id, body=body)
             db.session.add(comment)
             db.session.commit()
-            return redirect(url_for('main_blueprint.pitches'))
+            return redirect(url_for('main_blueprint.pitches', comment =comment))
     return render_template("new_comment.html", form = form )
 
 

@@ -49,7 +49,7 @@ class Comments(db.Model):
     comments =db.relationship("Pitch", backref="comments", lazy="dynamic")
     
     def __repr__(self):
-        return f"User('{self.category}', '{self.body}', '{self.comments}', '{self.upvotes}', '{self.downvotes}')"
+        return f"User('{self.body}')"
     
     all_comments = []
 
