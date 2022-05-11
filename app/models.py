@@ -1,3 +1,4 @@
+from unicodedata import category
 from . import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, current_user
@@ -44,18 +45,18 @@ class Comments(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(120), nullable=False)
-    comments = db.Column(db.String(300), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    pitch_id = pitches = db.relationship('Pitch', backref='pitch', lazy='dynamic')
 
     def __repr__(self):
         return f"User('{self.category}', '{self.body}', '{self.comments}', '{self.upvotes}', '{self.downvotes}')"
-
+    
     all_comments = []
 
-    def __init__(self, user_id, username, body):
+    def __init__(self, user_id, body, pitch_id):
         self.user_id = user_id
-        self.username = username
         self.body = body
+        pitch_id =  pitch_id
 
     def save_comment(self):
         Comments.all_comments.append(self)
@@ -75,6 +76,7 @@ class Pitch(db.Model):
     category = db.Column(db.String(255), index=True, nullable=False)
     body = db.Column(db.Text(), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    comment_id = db.Column(db.Integer, db.ForeignKey('comments.id'))
 
     def __init__(self, title, category, body, user_id):
         self.title = title

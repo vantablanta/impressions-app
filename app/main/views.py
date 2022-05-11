@@ -59,27 +59,23 @@ def add_pitch():
 
 
 
-# @main_blueprint.route('/comment/<int:pitch_id>', methods = ['POST','GET'])
-# @login_required
-# def comment(pitch_id):
-#     form = CommentForm()
-#     pitch = Pitch.query.get(pitch_id)
-#     all_comments = Comments.query.filter_by(pitch_id = pitch_id).all()
-#     if form.validate_on_submit():
-#         comment = form.comment.data 
-#         pitch_id = pitch_id
-#         user_id = current_user._get_current_object().id
-#         new_comment = Comments(comment = comment,user_id = user_id,pitch_id = pitch_id)
-#         db.session.add(new_comment)
-#         db.commit()
-#         return redirect(url_for('.comment', pitch_id = pitch_id))
-#     return render_template('comment.html', form =form, pitch = pitch,all_comments=all_comments)
+@main_blueprint.route('/comment/<int:pitch_id>', methods = ['POST','GET'])
+@login_required
+def comment(pitch_id):
+    all_comments = Comments.query.filter_by(pitch_id = pitch_id).all()
+    return render_template('comment.html',all_comments=all_comments)
 
 @main_blueprint.route('/comment', methods=['GET', 'POST'])
-def comment():
+def new_comment():
     form = CommentForm()
     if form.validate_on_submit():
-        return redirect(url_for('main_blueprint.pitches'))
+            body = form.body.data
+            user_id = current_user._get_current_object().id
+            pitch_id = current_user._get_current_object().id
+            comment = Comments(body=body, user_id=user_id, pitch_id=pitch_id)
+            db.session.add(comment)
+            db.session.commit()
+            return redirect(url_for('main_blueprint.pitches'))
     return render_template("new_comment.html", form = form )
 
 
